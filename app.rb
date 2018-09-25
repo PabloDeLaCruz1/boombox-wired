@@ -1,7 +1,6 @@
 require "sinatra"
 require_relative "models"
 require "bundler/setup"
-require "sinatra/flash"
 
 set :sessions, true
 use Rack::MethodOverride
@@ -14,7 +13,7 @@ end
 
 get "/" do
   if session[:user_id]
-    flash[:info] = "You have been signed in"
+    # flash[:info] = "You have been signed in"
     erb :user_profile, locals: {current_user: current_user}
   else
     erb :index
@@ -44,7 +43,7 @@ post "/login" do
     session[:user_id] = user.id
     redirect "/user_profile"
   else
-    flash[:info] = "Invalid email and/or password"
+    # flash[:info] = "Invalid email and/or password"
     redirect "/login"
   end
 end
