@@ -1,9 +1,39 @@
-<h2>Signup Form</h2>
-<form action="/signup" method="post">
-  <input type="text" name="first_name" placeholder="Enter First Name"><br>
-  <input type="text" name="last_name" placeholder="Enter Last Name"><br>
-  <hr>
-  <input type="text" name="email" placeholder="Enter Email"><br>
-  <input type="password" name="password" placeholder="Password"><br>
-  <input type="submit" value="Signup">
-</form>
+<div id="main-container">
+
+<h1 class="main-h1">Signup</h1>
+
+<div class="container">
+<div class="row">
+    <form action="/signup" method="post" class="col s12" id="reg-form">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate" name="first_name"  required>
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" name="last_name" class="validate" required>
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" name="email"class="validate" required>
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" name="password" class="validate" minlength="6" required>
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <button class="btn btn-large btn-register waves-effect waves-effect2  waves-light deep-orange lighten-3" type="submit" >Register
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

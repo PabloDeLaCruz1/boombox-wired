@@ -1,6 +1,7 @@
-<h1>Signup or Login</h1>
 <div id="main-container">
-<%= erb :signup%>
-<hr>
-<%= erb :login%>
+    <% if session[:user_id] %>
+        <%= erb :user_profile%>
+    <% else %>
+        <%= erb :login%>        
+    <% end %>
 </div>

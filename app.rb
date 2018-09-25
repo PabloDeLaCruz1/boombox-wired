@@ -1,9 +1,11 @@
 require "sinatra"
 require_relative "models"
 require "bundler/setup"
+require "sinatra/flash"
 
 set :sessions, true
 use Rack::MethodOverride
+set :port, 1337
 
 def current_user
   if session[:user_id]
@@ -13,11 +15,15 @@ end
 
 get "/" do
   if session[:user_id]
-    # flash[:info] = "You have been signed in"
-    erb :user_profile, locals: {current_user: current_user}
+    flash[:alert] = "You have been signed in"
+    erb :user_profile, locals: {current_user: current_user, posts: Post.order(:created_at).all}
   else
     erb :index
   end
+end
+
+get "/signup" do
+  erb :signup
 end
 
 post "/signup" do
@@ -33,27 +39,35 @@ post "/signup" do
   session[:user_id] = user.id
 
   # redirects to content page
-  redirect "/content"
+  redirect "/"
 end
 
 post "/login" do
   user = User.find_by(email: params[:email])
-
+  p user
+  user.inspect
+  puts params[:password]
   if user && user.password == params[:password]
     session[:user_id] = user.id
-    redirect "/user_profile"
+    erb :user_profile, locals: {current_user: current_user, posts: Post.order(:created_at).all}
   else
-    # flash[:info] = "Invalid email and/or password"
+    flash[:error] = "Invalid email and/or password"
     redirect "/login"
   end
 end
 
 get "/login" do
-  erb :login
+  erb :index
+end
+
+get "/logout" do
+  session[:user_id] = nil
+  flash[:info] = "Dont forget to come back! :("
+  redirect "/"
 end
 
 get "/user_profile" do
-  erb :user_profile
+  erb :user_profile, locals: {current_user: current_user, posts: Post.order(:created_at).all}
 end
 get "/posts/new" do
   erb :new_post
@@ -61,8 +75,7 @@ end
 
 get "/posts" do
   output = ""
-  output += erb :new_posts
-  output += erb :posts, locals: {posts: Post.order(:created_at).all}
+  output += erb :posts, locals: {current_user: current_user, posts: Post.order(:created_at).all}
   output
 end
 
@@ -84,6 +97,11 @@ get "/account" do
   erb :account
 end
 
-delete "/account" do
-  puts "something to the terminal"
+get "/delete-account" do
+  @user = User.find(session[:user_id])
+  @user.destroy
+  if session[:user_id] != nil
+    session[:user_id] = nil
+  end
+  redirect "/"
 end
