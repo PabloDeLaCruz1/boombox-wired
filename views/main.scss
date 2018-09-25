@@ -1,0 +1,13 @@
+h1 {
+    color: red;
+}
+
+
+  #main-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #main-container > div {
+      height: 20vh;
+      width: 20vw;
+  }

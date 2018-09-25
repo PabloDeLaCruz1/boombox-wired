@@ -1,0 +1,11 @@
+<h2>Login Form</h2>
+ <% flash.keys.each do |type| %>
+    <div class="flash <%= type %>">
+      <%= flash[type] %>
+    </div>
+  <% end %>
+<form action="/login" method="post">
+  <input type="text" name="email" placeholder="Enter Email"><br>
+  <input type="password" name="password" placeholder="Enter password"><br>
+  <input type="submit" value="Login">
+</form>
