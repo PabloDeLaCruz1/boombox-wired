@@ -1,5 +1,6 @@
 require "sinatra"
 require_relative "models"
+require "bundler/setup"
 require "sinatra/flash"
 
 set :sessions, true
