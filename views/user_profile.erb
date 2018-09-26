@@ -1,18 +1,12 @@
-<div class="container">
-
-  <% flash.keys.each do |type| %>
-      <div class="flash <%= type %>">
-        <%= flash[type] %>
-      </div>
-    <% end %>
-
+  <br>
   <%= erb :new_post %>
-    <div class="row">
-      <div class="col m10 offset-m1">
-      <button class="btn btn-large btn-register waves-effect waves-effect2  waves-light deep-orange lighten-3" type="submit" >
-      <a href="/delete-account">delete my account :( </a> </button>
-
-      
-    </div>
+    
   </div>
-</div>
+    <% 10.times do %>
+    <br>
+    <% end%>
+  <div class="row">
+      <div class="col m10 l10 s10">
+      <button class="btn  waves-effect waves-light deep-orange lighten-3" type="submit" >
+      <a href="/delete-account">delete my account :( </a> </button>
+   </div>

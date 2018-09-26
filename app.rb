@@ -83,6 +83,7 @@ post "/posts" do
   Post.create(
     title: params[:title],
     content: params[:content],
+    post_url: params[:post_url],
     user_id: current_user.id,
   )
 
