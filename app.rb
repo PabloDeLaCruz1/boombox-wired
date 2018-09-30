@@ -85,7 +85,7 @@ post "/posts" do
     user_id: current_user.id,
   )
 
-  redirect "/posts"
+  redirect "/"
 end
 
 get "/content" do
