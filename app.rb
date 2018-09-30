@@ -32,6 +32,7 @@ post "/signup" do
     email: params[:email],
     first_name: params[:first_name],
     last_name: params[:last_name],
+    birthday: params[:birthday],
     password: params[:password],
   )
 
@@ -44,9 +45,6 @@ end
 
 post "/login" do
   user = User.find_by(email: params[:email])
-  p user
-  user.inspect
-  puts params[:password]
   if user && user.password == params[:password]
     session[:user_id] = user.id
     erb :user_profile, locals: {current_user: current_user, posts: Post.order(:created_at).all}
@@ -105,4 +103,14 @@ get "/delete-account" do
     session[:user_id] = nil
   end
   redirect "/"
+end
+
+get "/search/:id" do
+  user_id = params[:id]
+  @user = User.find(user_id)
+  @posts = Post.find_by(user_id: user_id)
+
+  output = ""
+  output += erb :posts, locals: {current_user: User.find(user_id), posts: Post.order(:created_at).all}
+  output
 end

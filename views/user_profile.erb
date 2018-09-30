@@ -2,11 +2,15 @@
   <%= erb :new_post %>
     
   </div>
-    <% 10.times do %>
-    <br>
-    <% end%>
-  <div class="row">
-      <div class="col m10 l10 s10">
-      <button class="btn  waves-effect waves-light deep-orange lighten-3" type="submit" >
-      <a href="/delete-account">delete my account :( </a> </button>
-   </div>
+      <div class="card">
+    <div class="card-image waves-effect waves-block waves-light small">
+      <img class="activator" src="https://ui-avatars.com/api/?name=<%= current_user.first_name %>+ <%=current_user.last_name %>&background=0D8ABC&color=fff&size=500">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Hello <%= current_user.first_name %> <%= current_user.last_name %> </span>
+      <span class="card-title activator grey-text text-darken-4">Email: <%= current_user.email %></span>
+      <span class="card-title activator grey-text text-darken-4">Bday: <%= current_user.birthday %></span>
+      <p><a href="/delete-account">delete my account :( </a> </button></p>
+    </div>
+
+  </div>
