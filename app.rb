@@ -105,7 +105,7 @@ get "/delete-account" do
   redirect "/"
 end
 
-get "/search/:id" do
+get "/search" do
   user_id = params[:id]
   @user = User.find(user_id)
   @posts = Post.find_by(user_id: user_id)

@@ -26,11 +26,20 @@
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">Signup</a></li>
               <% end %>
-                <li><a href="/search/1">Search by id:</a></li>
+              
             </ul>
           </div>
       </nav>
 
+      <form action="/search" method="get" class="col s12" id="reg-form">
+       <div class="row">
+          <div class="input-field col s2 m2 l2">
+          <input id="id" type="text" name="id" class="validate" minlength="1" required>
+          <label for="id">Search by id</label>
+        </div>
+      </form>
+      <br>
+      <br>
       <%= yield %>
       <% 30.times do %>
       <br>
